@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  line-height: 0px;
+  font-size: 20px;
+}
+
+.app-title h1 {
+  font-size: 65px;
+}
+
+.app-title p {
+  color: rgb(94, 94, 94);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  /* border: 0.5px solid; */
+  width: 65%;
+  transform: scale(1.5);
+  padding: 0;
+  margin: 0;
+}
+
+.input-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 70px;
+  /* border: 0.5px solid; */
+  width: 750px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.input-area input {
+  width: 500px;
+  padding: 10px;
+  border-radius: 8px;
+  border: thin;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.input-area input:focus {
+  outline: none;
+  border-color: blueviolet;
+}
+
+.filter-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  /* border: 0.5px solid; */
+  padding: 15px;
+}
+
+.filter-select {
+  padding: 11px;
+  border-radius: 8px;
+  border: thin;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.filter-select:focus {
+  outline: none;
+}
+
+
+.filter-select:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.add-btn i {
+  font-size: 10px;
+}
+
+.add-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  padding: 11px;
+  padding-left: 13px;
+  padding-right: 15px;
+  gap: 6px;
+  border: thin;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
