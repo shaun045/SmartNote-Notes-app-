@@ -24,6 +24,7 @@ body {
 
 .app-title h1 {
   font-size: 65px;
+  color: #1f3281;
 }
 
 .app-title p {
@@ -50,9 +51,10 @@ body {
   gap: 10px;
   margin-top: 70px;
   /* border: 0.5px solid; */
-  width: 750px;
+  width: 720px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  height: 60px;
 }
 
 .input-area input {
@@ -61,20 +63,51 @@ body {
   border-radius: 8px;
   border: thin;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 .input-area input:focus {
   outline: none;
-  border-color: blueviolet;
+  box-shadow: 0 0 4px rgb(29, 52, 148);
 }
 
-.filter-group {
+.dropdown {
+  font-size: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   /* border: 0.5px solid; */
-  padding: 15px;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 10px;
+  padding-top: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown:hover {
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-list {
+  display: none;
+}
+
+.dropdown.open .dropdown-list {
+  display: block;
+}
+
+
+/* .filter-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; */
+  /* border: 0.5px solid; */
+  /* padding: 15px;
 }
 
 .filter-select {
@@ -83,22 +116,24 @@ body {
   border: thin;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .filter-select:focus {
   outline: none;
 }
 
-
 .filter-select:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
+}  */
+
 
 .add-btn i {
   font-size: 10px;
 }
 
 .add-btn {
+  font-weight: bold;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -108,5 +143,13 @@ body {
   padding-right: 15px;
   gap: 6px;
   border: thin;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  color: #1f3281;
+  background-color: #fae4cf;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
 }

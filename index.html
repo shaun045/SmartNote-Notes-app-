@@ -22,18 +22,37 @@
       <div class="controls">
         <div class="input-area">
           <input type="text" placeholder="Search notes...">
-          <div class="filter-group">
-            <select id="filterSelect" class="filter-select">
+          
+          <!-- <div class="filter-group"> -->
+            <!-- <select id="filterSelect" class="filter-select">
               <option value="all">All notes</option>
               <option value="work">Work</option>
               <option value="personal">Personal</option>
               <option value="ideas">Ideas</option>
               <option value="reminders">Reminders</option>
-            </select>
-            <button class="add-btn">
-              <i class="fa-solid fa-plus"></i> Add
-            </button>
-          </div>
+            </select> -->
+
+          <div class="dropdown" id="categoryDropdown"> 
+            <div class="dropdown-header">
+              <span class="selected">All notes</span>
+              <span class="arrow">▼</span>
+            </div>
+            
+            <ul class="dropdown-list">
+              <li data-value="all">All notes</li>
+              <li data-value="work">Work</li>
+              <li data-value="personal">Personal</li>
+              <li data-value="ideas">Ideas</li>
+              <li data-value="reminders">Reminders</li>
+            </ul>
+          </div> 
+
+            <div>
+              <button class="add-btn">
+                <i class="fa-solid fa-plus"></i> Add
+              </button>
+            </div>
+          <!-- </div> -->
         </div>
       </div>
       
