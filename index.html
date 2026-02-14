@@ -55,11 +55,95 @@
           <!-- </div> -->
         </div>
       </div>
+
+      <div class="notes-container">
+
+        <div class="notes-box">
+          <div class="notes-title">
+            <h2>Title</h2> 
+              <span class="note-btn">
+                <i class="fa-solid fa-trash"></i>
+              </span>
+          </div>
+          <div class="note-description">
+            <p>note</p>
+          </div>
+        </div>     
+
+      </div>
       
-      <ul>
+    </div>
 
-      </ul>
 
+
+
+    <div class="modal">
+
+      <div class="modal-content">
+          <div class="modal-content-container">
+              <div class="modal-header">
+                <h1>New Note</h1>
+                  <div class="close-modal-btn">
+                    <i class="fas fa-times"></i>
+                  </div>
+              </div>
+
+
+              <div class="modal-title-label">
+                <div class="modal-title">
+                  <label>Title</label>
+                  <input type="text">
+                </div>
+              </div>
+              
+              <div class="modal-description-label">
+                <div class="modal-description-title">
+                  <label>Content</label>
+                  <textarea cols="10" rows="10"></textarea>
+                </div>
+              </div>
+
+              <div class="modal-tags-label">
+                <label>Tags</label>
+
+                  <div class="modal-tags">
+                    <label class="tag-option">
+                      <input type="radio" name="noteTag" value="work" class="tag-radio">
+                        <span class="tag-label tag-work">
+                          <i class="fa-solid fa-briefcase"></i> Work
+                        </span>
+                    </label>
+
+                    <label class="tag-option">
+                      <input type="radio" name="noteTag" value="personal" class="tag-radio">
+                        <span class="tag-label tag-personal">
+                          <i class="fa-solid fa-user"></i> Personal
+                        </span>
+                    </label>
+
+                    <label class="tag-option">
+                      <input type="radio" name="noteTag" value="ideas" class="tag-radio">
+                        <span class="tag-label tag-ideas">
+                          <i class="fa-solid fa-lightbulb"></i> Ideas
+                        </span>
+                    </label>
+
+                    <label class="tag-option">
+                      <input type="radio" name="noteTag" value="reminder" class="tag-radio">
+                        <span class="tag-label tag-reminder">
+                          <i class="fa-solid fa-bell"></i> Reminder
+                        </span>
+                    </label>
+                  </div>
+              </div>
+
+          </div>
+          
+          <div class="modal-save-btn">
+            <button>Save Note</button>
+          </div>
+
+      </div>
     </div>
 
     <script src="script.js"></script>
