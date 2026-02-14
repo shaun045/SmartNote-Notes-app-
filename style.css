@@ -290,6 +290,14 @@ body {
   align-items: center;
 }
 
+.modal {
+  display: none;
+}
+
+.modal.open {
+  display: flex;
+}
+
 .modal-content {
   display: flex;
   justify-content: center;
@@ -300,6 +308,17 @@ body {
   height: 540px;
   margin: 0;
   border-radius: 10px;
+}
+
+.modal.open .modal-content {
+  animation: openAnim 0.3s ease;
+}
+
+@keyframes openAnim {
+  0% {transform: translateY(50px);
+      opacity: 0;}
+  100% {transform: translateY(0px);
+      opacity: 1;}
 }
 
 textarea {

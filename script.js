@@ -2,6 +2,9 @@ const dropdown = document.getElementById('categoryDropdown');
 const header = dropdown.querySelector('.dropdown-header');
 const options = dropdown.querySelectorAll('.dropdown-list li');
 const selected = dropdown.querySelector('.selected');
+const notesContainer = document.querySelector('.notes-box')
+const modal = document.querySelector('.modal');
+const closeModal = document.querySelector('.close-modal-btn')
 
 
 header.addEventListener('click', () => {
@@ -20,3 +23,12 @@ document.addEventListener("click", (e) => {
     dropdown.classList.remove("open");
   }
 });
+
+notesContainer.addEventListener('click', () => {
+  modal.classList.add("open");
+})
+
+closeModal.addEventListener('click', () => {
+  modal.classList.remove("open");
+})
+
