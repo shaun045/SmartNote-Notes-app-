@@ -48,15 +48,40 @@ closeModal.addEventListener('click', () => {
 
 
 // THIS IS FOR STORING THE DATA
+let notes = [];
 
-// THIS IS FOR ADDING NOTES FUNCTION
+try {
+  notes = JSON.parse(localStorage.getItem("notes")) || [];
+} catch (error) {
+  notes = [];
+}
+
+const saveToStorage = () => {
+  localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+// THIS IS FOR ADDING NOTES 
 addNotes.addEventListener('click', () => {
   modal.classList.add("open");
 });
 
 saveBtn.addEventListener('click', () => {
+  const title = inputTitle.value;
+  const content = inputContent.value;
+  const tag = inputTag.value;
+  const date = new Date().toLocaleDateString();
 
+  let note = {
+    title,
+    content,
+    tag,
+    date
+  };
 
+  notes.push(note);
+
+  saveToStorage();
+  render();
 
   modal.classList.remove("open");
 });

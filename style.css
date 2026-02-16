@@ -195,8 +195,7 @@ body {
 
 
 
-
-
+/* THIS IS FOR NOTES BOX DISPLAY */
 
 .notes-container {
   display: grid;
@@ -274,7 +273,7 @@ body {
 
 
 
-
+/* THIS IS FOR MODAL */
 
 .modal {
   position: fixed;
