@@ -1,10 +1,18 @@
+//THIS IS FOR OPENING AND CLOSING MODALS AND DROPDOWNS
 const dropdown = document.getElementById('categoryDropdown');
 const header = dropdown.querySelector('.dropdown-header');
 const options = dropdown.querySelectorAll('.dropdown-list li');
 const selected = dropdown.querySelector('.selected');
-const notesContainer = document.querySelector('.notes-box')
+const notesBox = document.querySelector('.notes-box')
 const modal = document.querySelector('.modal');
-const closeModal = document.querySelector('.close-modal-btn')
+const closeModal = document.querySelector('.close-modal-btn');
+
+// THIS IS FOR ADDING NOTES INFORMATION
+const addNotes = document.querySelector('.add-btn');
+const inputTitle = document.querySelector('.modal-title input');
+const inputContent = document.querySelector('.modal-description-title textarea');
+const inputTag = document.querySelector('.modal-tags tag-option');
+const saveBtn = document.querySelector('.modal-save-btn button');
 
 
 header.addEventListener('click', () => {
@@ -24,11 +32,42 @@ document.addEventListener("click", (e) => {
   }
 });
 
-notesContainer.addEventListener('click', () => {
+notesBox.addEventListener('click', () => {
   modal.classList.add("open");
-})
+});
 
 closeModal.addEventListener('click', () => {
   modal.classList.remove("open");
-})
+});
+
+
+
+
+
+
+
+
+// THIS IS FOR STORING THE DATA
+
+// THIS IS FOR ADDING NOTES FUNCTION
+addNotes.addEventListener('click', () => {
+  modal.classList.add("open");
+});
+
+saveBtn.addEventListener('click', () => {
+
+
+
+  modal.classList.remove("open");
+});
+
+
+//THIS IS FOR RENDERING DATA INFORMATION
+const render = () => {
+  const notesContainer = document.querySelector('.notes-container');
+  // notesContainer.innerHTML = "";
+  
+}
+
+render();
 
