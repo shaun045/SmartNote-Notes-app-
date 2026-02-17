@@ -7,11 +7,12 @@ const notesBox = document.querySelector('.notes-box')
 const modal = document.querySelector('.modal');
 const closeModal = document.querySelector('.close-modal-btn');
 
+const notesContainer = document.querySelector('.notes-container');
+
 // THIS IS FOR ADDING NOTES INFORMATION
 const addNotes = document.querySelector('.add-btn');
 const inputTitle = document.querySelector('.modal-title input');
 const inputContent = document.querySelector('.modal-description-title textarea');
-const inputTag = document.querySelector('.modal-tags tag-radio'); // MAKE SURE WE CAN TAKE THE INPUT OF TAGS
 const saveBtn = document.querySelector('.modal-save-btn button');
 
 
@@ -32,9 +33,14 @@ document.addEventListener("click", (e) => {
   }
 });
 
-notesBox.addEventListener('click', () => {
-  modal.classList.add("open");
+
+notesContainer.addEventListener('click', (e) => {
+  const box = e.target.closest('.notes-box');
+  if (box) {
+    modal.classList.add("open");
+  }
 });
+
 
 closeModal.addEventListener('click', () => {
   modal.classList.remove("open");
@@ -68,9 +74,11 @@ addNotes.addEventListener('click', () => {
 });
 
 saveBtn.addEventListener('click', () => {
+  const inputTag = document.querySelector('input[name=noteTag]:checked');
+  const tag = inputTag ? inputTag.value : 'none';
+
   const title = inputTitle.value;
   const content = inputContent.value;
-  const tag = inputTag.value;
   const date = new Date().toLocaleString();
 
   let note = {
@@ -90,15 +98,13 @@ saveBtn.addEventListener('click', () => {
 
 
 
-
 //THIS IS FOR RENDERING DATA INFORMATION
 const render = () => {
-  const notesContainer = document.querySelector('.notes-container');
   notesContainer.innerHTML = "";
 
-  notes.forEach((note, date) => {
+  notes.forEach((note, index) => {
     const noteElement = document.createElement('div');
-    noteElement.classList.add(".notes-box");
+    noteElement.classList.add("notes-box");
 
     noteElement.innerHTML = `
       <div class="notes-title">
@@ -120,10 +126,19 @@ const render = () => {
       </div>
     `;
 
+    const deleteBtn = noteElement.querySelector('.note-btn');
+    deleteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      notes.splice(index, 1);
+      saveToStorage();
+      render();
+    });
+
     notesContainer.appendChild(noteElement);
   });
   
 };
+
 
 render();
 
