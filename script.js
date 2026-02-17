@@ -11,7 +11,7 @@ const closeModal = document.querySelector('.close-modal-btn');
 const addNotes = document.querySelector('.add-btn');
 const inputTitle = document.querySelector('.modal-title input');
 const inputContent = document.querySelector('.modal-description-title textarea');
-const inputTag = document.querySelector('.modal-tags tag-option');
+const inputTag = document.querySelector('.modal-tags tag-radio'); // MAKE SURE WE CAN TAKE THE INPUT OF TAGS
 const saveBtn = document.querySelector('.modal-save-btn button');
 
 
@@ -60,6 +60,8 @@ const saveToStorage = () => {
   localStorage.setItem("notes", JSON.stringify(notes));
 }
 
+
+
 // THIS IS FOR ADDING NOTES 
 addNotes.addEventListener('click', () => {
   modal.classList.add("open");
@@ -69,7 +71,7 @@ saveBtn.addEventListener('click', () => {
   const title = inputTitle.value;
   const content = inputContent.value;
   const tag = inputTag.value;
-  const date = new Date().toLocaleDateString();
+  const date = new Date().toLocaleString();
 
   let note = {
     title,
@@ -87,12 +89,41 @@ saveBtn.addEventListener('click', () => {
 });
 
 
+
+
 //THIS IS FOR RENDERING DATA INFORMATION
 const render = () => {
   const notesContainer = document.querySelector('.notes-container');
-  // notesContainer.innerHTML = "";
+  notesContainer.innerHTML = "";
+
+  notes.forEach((note, date) => {
+    const noteElement = document.createElement('div');
+    noteElement.classList.add(".notes-box");
+
+    noteElement.innerHTML = `
+      <div class="notes-title">
+        <h2>${note.title}</h2> 
+          <span class="note-btn">
+            <i class="fa-solid fa-trash"></i>
+          </span>
+      </div>
+      <div class="note-description">
+        <p>${note.content}</p>
+      </div>
+      <div class="note-footer">
+        <div class="note-tag">
+          ${note.tag}
+        </div>
+        <div class="note-date">
+          ${note.date}
+        </div>
+      </div>
+    `;
+
+    notesContainer.appendChild(noteElement);
+  });
   
-}
+};
 
 render();
 
