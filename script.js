@@ -97,6 +97,23 @@ saveBtn.addEventListener('click', () => {
 });
 
 
+//THIS IS FOR TAG FUNCTION
+function getTagIcon(tag) {
+  const icons = {
+    work: 'briefcase',
+    personal: 'user',
+    ideas: 'lightbulb',
+    reminder: 'bell'
+  };
+  return icons[tag] || 'tag';
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+
+
 
 //THIS IS FOR RENDERING DATA INFORMATION
 const render = () => {
@@ -118,7 +135,9 @@ const render = () => {
       </div>
       <div class="note-footer">
         <div class="note-tag">
-          ${note.tag}
+              <span class="tag-display display-${note.tag}">
+                <i class="fa-solid fa-${getTagIcon(note.tag)}"></i> ${capitalize(note.tag)}
+              </span>
         </div>
         <div class="note-date">
           ${note.date}
