@@ -34,14 +34,6 @@ document.addEventListener("click", (e) => {
 });
 
 
-notesContainer.addEventListener('click', (e) => {
-  const box = e.target.closest('.notes-box');
-  if (box) {
-    modal.classList.add("open");
-  }
-});
-
-
 closeModal.addEventListener('click', () => {
   modal.classList.remove("open");
 });
@@ -53,8 +45,10 @@ closeModal.addEventListener('click', () => {
 
 
 
+
 // THIS IS FOR STORING THE DATA
 let notes = [];
+let editingIndex = null;
 
 try {
   notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -70,6 +64,9 @@ const saveToStorage = () => {
 
 // THIS IS FOR ADDING NOTES 
 addNotes.addEventListener('click', () => {
+  editingIndex = null;
+  inputTitle.value = "";
+  inputContent.value = "";
   modal.classList.add("open");
 });
 
@@ -81,20 +78,60 @@ saveBtn.addEventListener('click', () => {
   const content = inputContent.value;
   const date = new Date().toLocaleString();
 
-  let note = {
-    title,
-    content,
-    tag,
-    date
-  };
 
-  notes.push(note);
+  if (editingIndex !== null) {
+    notes[editingIndex] = {
+      title,
+      content,
+      tag,
+      date
+    };
+
+    editingIndex = null;
+  } else {
+    notes.push ({
+      title,
+      content,
+      tag,
+      date
+    });
+  }
+
 
   saveToStorage();
   render();
 
   modal.classList.remove("open");
 });
+
+
+
+
+
+
+//THIS IS FOR OPENING MODAL
+notesContainer.addEventListener('click', (e) => {
+  const box = e.target.closest('.notes-box');
+
+  if (box) {
+    const index = [...notesContainer.children].indexOf(box);
+    const note = notes[index];
+
+    inputTitle.value = note.title;
+    inputContent.value = note.content;
+
+    const tagInput = document.querySelector(`input[name="noteTag"][value="${note.tag}"]`);
+    if (tagInput) tagInput.checked = true;
+
+    editingIndex = index;
+
+    modal.classList.add("open");
+  }
+});
+
+
+
+
 
 
 //THIS IS FOR TAG FUNCTION
