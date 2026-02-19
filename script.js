@@ -23,7 +23,9 @@ header.addEventListener('click', () => {
 options.forEach(option => {
   option.addEventListener('click', () => {
     selected.textContent = option.textContent;
+    selectedFilter = option.dataset.value;
     dropdown.classList.remove("open");
+    render();
   });
 });
 
@@ -45,10 +47,10 @@ closeModal.addEventListener('click', () => {
 
 
 
-
 // THIS IS FOR STORING THE DATA
 let notes = [];
 let editingIndex = null;
+let selectedFilter = "all";
 
 try {
   notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -59,6 +61,8 @@ try {
 const saveToStorage = () => {
   localStorage.setItem("notes", JSON.stringify(notes));
 }
+
+
 
 
 
@@ -90,6 +94,7 @@ saveBtn.addEventListener('click', () => {
     editingIndex = null;
   } else {
     notes.push ({
+      id: Date.now(),
       title,
       content,
       tag,
@@ -134,6 +139,7 @@ notesContainer.addEventListener('click', (e) => {
 
 
 
+
 //THIS IS FOR TAG FUNCTION
 function getTagIcon(tag) {
   const icons = {
@@ -156,7 +162,12 @@ function capitalize(str) {
 const render = () => {
   notesContainer.innerHTML = "";
 
-  notes.forEach((note, index) => {
+  const filteredNotes = selectedFilter === "all"
+    ? notes
+    : notes.filter(note => note.tag === selectedFilter);
+
+
+  filteredNotes.forEach((note, index) => {
     const noteElement = document.createElement('div');
     noteElement.classList.add("notes-box");
 
@@ -182,10 +193,11 @@ const render = () => {
       </div>
     `;
 
+
     const deleteBtn = noteElement.querySelector('.note-btn');
     deleteBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      notes.splice(index, 1);
+      notes = notes.filter(n => n.id !== note.id);
       saveToStorage();
       render();
     });
