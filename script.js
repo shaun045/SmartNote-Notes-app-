@@ -7,6 +7,8 @@ const notesBox = document.querySelector('.notes-box')
 const modal = document.querySelector('.modal');
 const closeModal = document.querySelector('.close-modal-btn');
 
+const searchInput = document.querySelector('.input-area input');
+
 const notesContainer = document.querySelector('.notes-container');
 
 // THIS IS FOR ADDING NOTES INFORMATION
@@ -51,6 +53,9 @@ closeModal.addEventListener('click', () => {
 let notes = [];
 let editingIndex = null;
 let selectedFilter = "all";
+let searchQuery = "";
+
+
 
 try {
   notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -61,6 +66,15 @@ try {
 const saveToStorage = () => {
   localStorage.setItem("notes", JSON.stringify(notes));
 }
+
+
+
+
+// THIS IS FOR SEARCHING NOTES
+searchInput.addEventListener('input', (e) => {
+  searchQuery = e.target.value.toLowerCase().trim();
+  render();
+});
 
 
 
@@ -84,12 +98,11 @@ saveBtn.addEventListener('click', () => {
 
 
   if (editingIndex !== null) {
-    notes[editingIndex] = {
-      title,
-      content,
-      tag,
-      date
-    };
+    notes = notes.map (n => 
+      n.id === editingIndex
+        ? {...n, title, content, tag, date}
+        :n
+    );
 
     editingIndex = null;
   } else {
@@ -119,8 +132,8 @@ notesContainer.addEventListener('click', (e) => {
   const box = e.target.closest('.notes-box');
 
   if (box) {
-    const index = [...notesContainer.children].indexOf(box);
-    const note = notes[index];
+    const noteId = Number(box.dataset.id);
+    const note = notes.find(n => n.id === noteId);
 
     inputTitle.value = note.title;
     inputContent.value = note.content;
@@ -128,7 +141,7 @@ notesContainer.addEventListener('click', (e) => {
     const tagInput = document.querySelector(`input[name="noteTag"][value="${note.tag}"]`);
     if (tagInput) tagInput.checked = true;
 
-    editingIndex = index;
+    editingIndex = noteId;
 
     modal.classList.add("open");
   }
@@ -162,14 +175,24 @@ function capitalize(str) {
 const render = () => {
   notesContainer.innerHTML = "";
 
-  const filteredNotes = selectedFilter === "all"
-    ? notes
-    : notes.filter(note => note.tag === selectedFilter);
+  // const filteredNotes = selectedFilter === "all"
+  //   ? notes
+  //   : notes.filter(note => note.tag === selectedFilter);
+
+  const filteredNotes = notes.filter(note => {
+    if (selectedFilter !== "all" && note.tag !==selectedFilter) {
+      return false;
+    }
+
+    const searchableText = `${note.title} ${note.content}`.toLowerCase();
+    return searchableText.includes(searchQuery);
+  });
 
 
   filteredNotes.forEach((note, index) => {
     const noteElement = document.createElement('div');
     noteElement.classList.add("notes-box");
+    noteElement.dataset.id = note.id;
 
     noteElement.innerHTML = `
       <div class="notes-title">
